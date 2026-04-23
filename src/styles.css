@@ -1,0 +1,186 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-blueprint: var(--blueprint);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-alert: var(--alert);
+}
+
+:root {
+  --radius: 0;
+  --paper: oklch(0.97 0.005 90);
+  --ink: oklch(0.18 0.01 270);
+  --blueprint: oklch(0.45 0.18 265);
+  --alert: oklch(0.6 0.22 25);
+
+  --background: oklch(0.97 0.005 90);
+  --foreground: oklch(0.18 0.01 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 270);
+  --primary: oklch(0.18 0.01 270);
+  --primary-foreground: oklch(0.97 0.005 90);
+  --secondary: oklch(0.45 0.18 265);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.93 0.005 90);
+  --muted-foreground: oklch(0.45 0.01 270);
+  --accent: oklch(0.45 0.18 265);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.18 0.01 270);
+  --input: oklch(0.18 0.01 270);
+  --ring: oklch(0.45 0.18 265);
+}
+
+.dark {
+  --background: oklch(0.18 0.01 270);
+  --foreground: oklch(0.97 0.005 90);
+  --card: oklch(0.22 0.01 270);
+  --card-foreground: oklch(0.97 0.005 90);
+  --primary: oklch(0.97 0.005 90);
+  --primary-foreground: oklch(0.18 0.01 270);
+  --border: oklch(0.97 0.005 90);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  body {
+    background-image:
+      linear-gradient(to right, oklch(0 0 0 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0 0 0 / 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    min-height: 100dvh;
+  }
+  h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .bp-card {
+    background: var(--card);
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 0 var(--ink);
+  }
+  @media (min-width: 768px) {
+    .bp-card { box-shadow: 8px 8px 0 0 var(--ink); border-width: 4px; }
+  }
+  .bp-card-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bp-btn {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 3px solid var(--ink);
+    transition: all 0.1s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .bp-btn:hover { background: var(--blueprint); border-color: var(--blueprint); }
+  .bp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .bp-btn-ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+  .bp-btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .bp-btn-alert {
+    background: var(--alert);
+    border-color: var(--ink);
+    color: white;
+  }
+  .bp-btn-alert:hover { background: var(--ink); border-color: var(--ink); }
+  .bp-input {
+    width: 100%;
+    background: var(--card);
+    border: 3px solid var(--ink);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+    outline: none;
+  }
+  .bp-input:focus { box-shadow: 4px 4px 0 0 var(--blueprint); }
+  .bp-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted-foreground);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .bp-tag {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  .bp-tag-blue { background: var(--blueprint); color: white; }
+  .bp-tag-alert { background: var(--alert); color: white; }
+  .bp-tag-paper { background: var(--paper); color: var(--ink); border: 2px solid var(--ink); }
+}
