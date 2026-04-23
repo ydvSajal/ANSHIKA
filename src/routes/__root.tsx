@@ -20,6 +20,7 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "https://minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com/ccv2%2F2026-04-23%2FMiniMax-M2.7%2F2037123545800126866%2Fbfa282009e6735f232f9380c2efad03d66fcfc154477ee0f3655aaf05a980abb..png?Expires=1777034702&OSSAccessKeyId=LTAI5tCpJNKCf5EkQHSuL9xg&Signature=BDTasVrBORXwE9zI0nCTP6j1RLc%3D" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
